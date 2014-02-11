@@ -1,6 +1,4 @@
 ﻿
-
-
 (function ()
 {
     function info (text, topic, tags) {
@@ -19,7 +17,7 @@
         titleTemplate: "<tr><td colspan=3>{{>name}}</td></tr>",
         detailTemplate: "<tr><td>{{>name}}</td><td>Released: {{>releaseYear}}</td><td>director: {{>director}}</td></tr>",
         taskTemplate: "<tr><td>{{>Id}}</td><td>{{>Name}}</td><td>{{>Description}}</td><td>{{>Status}}</td></tr>",
-        infoTable: "<tr><td>{{:Id}}</td><td>{{:Text}}</td><td>{{:Topic}}</td><td>{{:Tags}}</td><td>{{:iDate}}</td></tr>",
+        infoTable: "<tr><td>{{:Topic}}</td><td>{{:Tags}}<td>{{:Text}}</td></td><td>{{:iDate}}</td></tr>",
         infoTemplate: "<li  id='{{:ID}}'>{{:Text}}</li>"
     });
 
@@ -38,36 +36,49 @@
         // create a new object
         info = {};
         info.parentid = null;
-        info.text = text;
-        info.topic = topic;
-        info.tags = tags;
+        info.Text = text;
+        info.Topic = topic;
+        info.Tags = tags;
 
         // send object to the server
         $.when($.ajax({ url: serviceURL, data: info, type: "post", datatype: "json" }))
                .then(function (response, textstatus, xhr) {
                    // add task to the list
                    // $('#tasklist').append($.render.tasktemplate(task));
+
+                   var newRecord = $.render.infoTable([info]);
+                   $('#inforecords').before(newRecord);
+                   $('#mesage')
+                       .text('Successful stored information')
+                       .addClass('alert alert-danger')
                })
-                .fail(function(err)   {
-                    console.log("error");
-                });
+            .fail(function () {
+                $('#mesage')
+                    .text('Error happended whilst processing information')
+                    .addClass('alert alert-danger');
+                    
+            });
     }
 
     // get saved information from the database
-    var getInfo = function () {
+    var getInfo = function ()
+    {
         // get info and visualize
-
         var serviceURL = "http://infoapi.domemory.net/api/info/0";
 
         $.when($.ajax({ url: serviceURL, type: "GET", contentType: "application/json;charset=utf-8" }))
-            .then(function (data, textstatus, xhr) {
-            // console.log(response);
-            $('#infodisplay').html('<table class="table table-condensed">' + $.render.infoTable(data.InfoList) + '</table>');
-        });
-
+            .then(function (data, textstatus, xhr)
+            {
+                $('#infodisplay').html('<table  class="table table-condensed"><tr><th>Topic</th><th>Caption<th>Text</th><th>iDate</th></tr><tbody id="inforecords">' + $.render.infoTable(data.InfoList) + '</tbody></table>');
+                $('#mesage').addClass('alert alert-danger').text('Successful stored information');
+            })
+            .fail(function()
+            {
+                $('#mesage').addClass('alert alert-danger').text('Error happended whilst processing information');
+            });
+        
     }
 
     getInfo();
-
 
 })();
