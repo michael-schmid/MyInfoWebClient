@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <h1>Manage Info</h1>
+                <h1>Information</h1>
                 
             </div>
             <div class="col-lg-5">
@@ -43,8 +43,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="badge">14</span>Users</li>
+                    <li class="list-group-item"><span class="badge">8</span>Exceptions</li>
+                    <li class="list-group-item"><span class="badge">44</span>Notifications</li>
+                    <li class="list-group-item"><span class="badge">123</span>Orders</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
                 <form role="form" class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="inpParentID">ParentID</label>
+                        <input type="text" class="form-control" id="inpParentID" placeholder="ParentID">
+                    </div>
                     <div class="form-group">
                         <label class="sr-only" for="inpTopic">Topic</label>
                         <input type="text" class="form-control" id="inpTopic" placeholder="Topic">
@@ -60,18 +72,10 @@
                     <label class="sr-only" for="inpText">Text</label>
                     <textarea class="form-control" id="inpText" placeholder="Text"></textarea>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10">
                 <div id="infodisplay"></div>
             </div>
         </div>
-    </div>
-   
-    
-    
-    
+  
 
     <script src="scripts/infoStore.js"></script>
     <script src="scripts/info.js"></script>
