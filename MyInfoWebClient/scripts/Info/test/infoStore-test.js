@@ -2,7 +2,7 @@
 // once loaded this file set the base url to the path
 // where all other modules are located
 require.config({
-    baseUrl: "/scripts"
+    baseUrl: "/scripts/Info"
 });
 
 define(['infoForm', 'infoStore'], function (iForm) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculator Unit Tests</title>
-    <link rel="stylesheet" href="./css/vender/mocha.css" />
+    <link rel="stylesheet" href="/css/mocha.css" />
 </head>
 <body>
     <!--    ----------------------------------------------------------------------------------- 
@@ -13,24 +13,19 @@
      ---------------------------------------------------------------------------------->
 
     <div id="mocha"></div>
-    <script src="../scripts/require.js"></script>
-	<script src="./js/vender/expect.js"></script>
-	<script src="./js/vender/mocha.js"></script>
-	<script src="./js/vender/jquery-1.9.1.js"></script>
-    <script src="../scripts/jsrender.js"></script>
+    <script src="/scripts/require.js"></script>
+    <script src="/scripts/expect.js"></script>
+    <script src="/scripts/mocha.js"></script>
+    <script src="/scripts/jquery-1.9.1.js"></script>
+    <script src="/scripts/jsrender.js"></script>
 
     <script>mocha.setup({ ui: "bdd" });</script>
-    
     <script src=""></script>
-
+    
     <script>
-
-       
         require(['infoStoreWebService-test'],  function () {
             mocha.run();
         });
-
-
     </script>
 </body>
 </html>
