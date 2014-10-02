@@ -1,9 +1,4 @@
 
-// once loaded this file set the base url to the path
-// where all other modules are located
-require.config({
-    baseUrl: "/scripts/Info"
-});
 
 /*  ------------------------------------------------------------------------------------------------------------------
 
@@ -13,11 +8,13 @@ require.config({
 
     -------------------------------------------------------------------------------------------------------------------*/
 
-    // prod
-    var serviceURL = "http://infoapi.domemory.net/api";
+   
+  
 
-    // local dev
-    var serviceURL = "http://localhost:49993/api";
+// test web service methods for getting and setting data 
+define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig) {
+
+    var serviceURL = iConfig.serviceURL;
 
     // create a new object for root
     var info = {};
@@ -26,8 +23,6 @@ require.config({
     info.Value = "testInfoValue";
     info.Url = "testInfoUrl";
 
-// test web service methods for getting and setting data 
-define(['infoForm', 'infoStore'], function (iForm, iStore) {
 
     // var to create the child on the root
     var createdRootId;

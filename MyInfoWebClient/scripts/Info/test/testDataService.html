@@ -19,12 +19,28 @@
     <script src="/scripts/jquery-1.9.1.js"></script>
     <script src="/scripts/jsrender.js"></script>
 
-    <script>mocha.setup({ ui: "bdd" });</script>
-    <script src=""></script>
     
     <script>
-        require(['infoStoreWebService-test'],  function () {
-            mocha.run();
+        mocha.setup({ ui: "bdd" });
+        
+        // loaction where all Information modules are located
+        require.config({
+            baseUrl: "/scripts/Info"
+        });
+
+        require(['infoConfig'], function (iConfig) {
+        
+            
+            // local dev
+            iConfig.serviceURL = "http://localhost:49993/api";
+
+            // prod
+            //iConfig.serviceURL = "http://infoapi.domemory.net/api";
+
+            // load and run tests
+            require(['./infoStoreWebService-test.js'], function (iConfig) {
+                mocha.run();
+            });
         });
     </script>
 </body>

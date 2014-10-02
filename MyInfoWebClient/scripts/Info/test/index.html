@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="/css/mocha.css" />
 </head>
 <body>
-
-    
+     
 
     <!--    ----------------------------------------------------------------------------------- 
         
@@ -22,22 +21,19 @@
     <script src="/scripts/jquery-1.9.1.js"></script>
     <script src="/scripts/jsrender.js"></script>
 
-    
-    <script src="../scripts/infoStore.js"></script>
-
-   
-
-
-    <script>mocha.setup({ ui: "bdd" });</script>
-	
-
-    
+        
     <script src=""></script>
 
     <script>
+        mocha.setup({ ui: "bdd" });
 
-       
-        require(['infoStore-test'],  function () {
+        // once loaded this file set the base url to the path
+        // where all other modules are located
+        require.config({
+            baseUrl: "/scripts/Info"
+        });
+
+        require(['./infoStore-test.js'],  function () {
             mocha.run();
         });
 
