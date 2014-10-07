@@ -6,11 +6,14 @@ define(function () {
     return config = (function () {
 
         return {
-            serviceURL: ""
+            // used for all data requests
+            
+        serviceURL: "http://infoapi.domemory.net/api"            ,
+        serviceURL_test : "http://infoapi.domemory.net/api"
+
+            //serviceURL: "http://localhost:49993/api"            ,
+            //serviceURL_test : "http://localhost:49993/api"
         }
     }());
-    return {
-
-        display: getInfoForm
-    };
+   
 });

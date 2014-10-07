@@ -77,14 +77,15 @@ define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig
     });
     
     describe("Get information", function () {
-        describe("list", function () {
-            it("should return and array of information objects with properties: Id, Value, Key, Url", function (done) {
+        describe("root list without id", function () {
+            it("should return and array of information objects with properties: Id, Value, Key, Url, Level", function (done) {
 
+                // /info
                 var action = serviceURL + "/info";
            
                 $.when($.ajax({ url: action, type: "GET", contentType: "application/json;charset=utf-8" }))
                     .then(function (data, textstatus, xhr) {
-                        expect(data[0]).to.have.keys('Value', 'Key', 'Id', 'Url');
+                        expect(data[0]).to.have.keys('Value', 'Key', 'Id', 'Url', 'Level');
                         done();
                     })
                     .fail(function () { });
@@ -93,14 +94,14 @@ define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig
 
         describe("detail", function () {
                     
-            it("should return requested information object properties: Id, Value, Key, Url", function (done) {
+            it("should return requested information object properties: Id, Value, Key, Url, Level", function (done) {
 
                 var action = serviceURL + "/info/" +createdRootId;
 
                 // Success Return
                 $.when($.ajax({ url: action, type: "GET", contentType: "application/json;charset=utf-8" }))
                     .then(function (data, textstatus, xhr) {
-                        expect(data).to.have.keys('Value', 'Key', 'Id', 'Url');
+                        expect(data).to.have.keys('Value', 'Key', 'Id', 'Url', 'Level');
                         done();
                     })
                     .fail(function () { });

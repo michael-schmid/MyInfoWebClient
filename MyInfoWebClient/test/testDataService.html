@@ -16,12 +16,11 @@
     <script src="/scripts/require.js"></script>
     <script src="/scripts/expect.js"></script>
     <script src="/scripts/mocha.js"></script>
-    <script src="/scripts/jquery-1.9.1.js"></script>
-    <script src="/scripts/jsrender.js"></script>
+  
 
     
     <script>
-        mocha.setup({ ui: "bdd" });
+        mocha.setup({ ui: "bdd", bail:false });
         
         // loaction where all Information modules are located
         require.config({
@@ -29,17 +28,15 @@
         });
 
         require(['infoConfig'], function (iConfig) {
-        
             
-            // local dev
-            iConfig.serviceURL = "http://localhost:49993/api";
-
             // prod
-            //iConfig.serviceURL = "http://infoapi.domemory.net/api";
+            iConfig.serviceURL_test = "http://infoapi.domemory.net/api";
 
-            // load and run tests
-            require(['./infoStoreWebService-test.js'], function (iConfig) {
-                mocha.run();
+            require(['/scripts/main.js'], function ($) {
+                // load and run tests
+                require(['/scripts/info/test/infoStoreWebService-test.js'], function (iConfig) {
+                    mocha.run();
+                });
             });
         });
     </script>
