@@ -25,17 +25,19 @@
     
 
     <script>
-       // mocha.setup({ ui: "bdd", globals: ['jquery*'] });
+        mocha.setup({ ui: "bdd", globals: ['jquery*'] });
+        </script>
 
+    <script>
         // once loaded this file set the base url to the path
         // where all other modules are located
-        //require.config({
-        //    baseUrl: "/scripts/Info"
-        //});
+        require.config({
+            baseUrl: "/scripts/Info"
+        });
 
         // frist load require module paths
         require(['/scripts/main.js'], function ($) {
-            require(['/scripts/Info/test/infoStore-test.js', ], function () {
+            require(["../scripts/Info/test/infoStore-test.js"], function () {
                 //ipt src="../scripts/Info/test/infoStore-test.js"
                 mocha.run();
             });
