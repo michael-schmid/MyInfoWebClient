@@ -11,7 +11,7 @@ requirejs.config({
         'bootstrap': ['/bootstrap/css/bootstrap-min'],
 
         'sinon': ['/scripts/sinon-1.9.1'],
-        'jsrender': ['/scripts/jsrender'],
+        'jsrender': ['/scripts/lib/jsrender.min'],
 
         'infoForm': ['/scripts/info/infoForm']       ,
         'infoStore': ['/scripts/info/infoStore']        ,

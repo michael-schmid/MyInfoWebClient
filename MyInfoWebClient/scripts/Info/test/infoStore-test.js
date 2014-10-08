@@ -111,18 +111,6 @@
 
             describe("Display", function () {
 
-                //it("Information Hierarchy", function (done) {
-
-                //    var $list = $('<div></div>');
-                //    iStore.list($list);
-
-                //    setTimeout(function () {
-                //        expect($list.find('dt').length).to.be(5);
-                //        done();
-                //    }, 1000)
-
-                //});
-
                 describe("Information list", function () {
 
                     it("should display definition list with equal dt as data records", function (done) {
@@ -132,13 +120,28 @@
 
                         iStore.list($list, list);
 
-                        setTimeout(function () {
-                            expect($list.find('dd').length).to.be(list.length);
-                            done();
-                        }, 1000)
+                        expect($list.find('dd').length).to.be(list.length);
+                        done();
                     });
                 });
 
+
+                describe("Information Detail", function () {
+
+                    it("should render a info object as definition list", function (done) {
+
+                        var infoDetail = {
+                            "Id": 10, "parentId": null, "Level": 1, "Name": null, "Key": "testInfoNamem", "Value": "testInfoValue",
+                            "Url": null, "iDate": "2014-10-05 15:39:36", "cDate": "0001-01-01T00:00:00"
+                        };
+                        
+                        var $info = $('<div></div>');
+                        iStore.detail($info, infoDetail);
+
+                        expect($info.find('dt').length).to.be(Object.keys(infoDetail).length);
+                        done();
+                    });
+                });
 
                 //describe("Detail", function () {
 

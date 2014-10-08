@@ -42,7 +42,6 @@ define([], function () {
                 "Url": null, "iDate": "2014-10-05 15:39:36", "cDate": "0001-01-01T00:00:00"
             }
         ]
-
     }
     return {
         list: list 
