@@ -23,11 +23,12 @@ define(['jquery', 'infoConfig'], function ($, iConfig) {
         return $.ajax({ url: action, type: "DELETE", contentType: "application/json;charset=utf-8" });
 
     };
-    var update = function (id, info) {
-        
-        var action = iConfig.serviceURL + "/info/" + id;
-        return $.ajax({ url: action, type: "PUT", contentType: "application/json;charset=utf-8" });
+    var update = function (parentId, info) {
 
+        // just return the ajax promise
+        // call: $.when(iData.update(Id, info)).then(function (data) {});
+        var action = iConfig.serviceURL + "/info/" + parentId;
+        return $.ajax({ url: action, type: "PUT", datatype: "json" , data : info });
     };
     var create = function (id, info) {
 

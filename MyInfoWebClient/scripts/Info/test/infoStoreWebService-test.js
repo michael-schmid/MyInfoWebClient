@@ -8,11 +8,8 @@
 
     -------------------------------------------------------------------------------------------------------------------*/
 
-   
-  
-
 // test web service methods for getting and setting data 
-define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig) {
+define(['infoForm', 'infoStore', 'infoConfig', 'infoData'], function (iForm, iStore, iConfig, iData) {
 
     var serviceURL = iConfig.serviceURL;
 
@@ -22,7 +19,6 @@ define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig
     info.Key = "testInfoName";
     info.Value = "testInfoValue";
     info.Url = "testInfoUrl";
-
 
     // var to create the child on the root
     var createdRootId;
@@ -62,18 +58,16 @@ define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig
 
                 // send test information object to the server
                 $.when($.ajax({ url: action, data: info, type: "POST", datatype: "json" }))
-                       .then(function (response, textstatus, xhr) {
-                           expect(response).to.be.a('number');
-                           expect(response).to.be.above(0);
-                           done();
-                       })
+                    .then(function (response, textstatus, xhr) {
+                        expect(response).to.be.a('number');
+                        expect(response).to.be.above(0);
+                        done();
+                    })
                     .fail(function () {
                         // not so good, error happened
                     });
             });
         });
-
-      
     });
     
     describe("Get information", function () {
@@ -108,29 +102,23 @@ define(['infoForm', 'infoStore', 'infoConfig'], function (iForm, iStore, iConfig
             });
         });
     });
-    
-    
 
     describe("Update information", function () {
         it("should return 204 success", function (done) {
 
-            var action = serviceURL + "/info/" + createdRootId;
-           
-            var info = { Name: 'testInfoNameUpdated', Key: 'testInfoKeyUpdated', Value: 'testInfoValueUpdated', url: 'testInfoUrlUpdated' };
+         var Id = createdRootId;
+         var info = { Name: 'testInfoNameUpdated', Key: 'testInfoKeyUpdated', Value: 'testInfoValueUpdated', url: 'testInfoUrlUpdated' };
 
-            // send test information object to the server
-            $.when($.ajax({
-                url: action,
-                data: info, type: "PUT", datatype: "json"
-            }))
-            .then(function (response, textstatus, xhr) {
-
+        // update the info
+         $.when(iData.update(Id, info))
+            .then(function (data) {
                 done();
-            })
-            .fail(function () { });
+         });
+         //.fail(function (xhr) {
+         //    alert(xhr);
+         //});
         });
     });
-
 
     describe("Delete information", function () {
         it("should return HTTP Status 204 nocontent", function (done) {

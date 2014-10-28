@@ -1,7 +1,6 @@
 ﻿
-
+// requirejs configuration
 requirejs.config({
-  
     paths: {
         /* Load jquery from google cdn. On fail, load local file. */
         // 'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min', '/scripts/jquery-1.9.1'],
@@ -17,12 +16,17 @@ requirejs.config({
         'infoStore': ['/scripts/info/infoStore']        ,
         'infoConfig': ['/scripts/info/infoConfig']      ,
         'infoData': ['/scripts/info/infoData'],
-        'infoMockData': ['/scripts/info/infoMockData']
+        'infoMockData': ['/scripts/info/infoMockData'],
+        'amplify': ['/scripts/amplify.min']
     },
     shim: {
         /* Set bootstrap dependencies (just jQuery) */
         'bootstrap': ['jquery'],
-        'jsrender':  ['jquery']
+        'jsrender':  ['jquery'],
+        'amplify': {
+            deps: ["jquery"],
+            exports: "amplify"
+        }
     }
 });
 
